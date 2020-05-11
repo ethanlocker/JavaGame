@@ -1,0 +1,43 @@
+package source_code;
+
+public class FinalProjectArray {
+	
+	public static void main(String[] args)
+	{
+		//FINAL CIT 312 PROGRAMMING PROJECT BY ETHAN LOCKER
+		
+		//Declaring objects and variables
+		Die[] dieArray = new Die[10];
+		int total = 0;
+		
+		System.out.println("Die objects before the roll (default face value is 1):");
+		System.out.print("[");
+		
+		//Adds 10 die objects to array
+		for (int index = 0; index < dieArray.length; index++)
+		{
+			Die die = new Die();
+			dieArray[index] = die;
+			System.out.print(dieArray[index] + " ");
+		}
+		
+		System.out.print("]");
+		
+		System.out.println("\n\nDie objects after the roll:");
+		System.out.print("[");
+		
+		//Rolls each die object in array and adds value to total
+		for (int i = 0; i < dieArray.length; i++)
+		{
+			dieArray[i].roll();
+			System.out.print(dieArray[i] + " ");
+			total = total + dieArray[i].getFaceValue();
+		}
+		System.out.print("]");
+		
+		//Prints total of die values from dieArray
+		System.out.println("\n\nTotal: " + total);
+	
+	}
+
+}
