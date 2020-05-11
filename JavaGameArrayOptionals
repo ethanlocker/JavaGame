@@ -1,0 +1,144 @@
+package source_code;
+
+import java.util.Scanner;
+
+public class FinalProjectArrayOptionals {
+	
+	public static void main(String[] args)
+	{
+		//FINAL CIT 312 PROGRAMMING PROJECT BY ETHAN LOCKER
+		
+		//Introduction banner to game
+		System.out.println("WELCOME TO DIE-ROLLER VERSION 3.1.2 BY ETHAN LOCKER AND TRISTAN BHIRO\n");
+		System.out.println("The game will keep running as long as you enter values greater than zero.\nIf you want to quit, type 0.");
+		
+		//Declaring objects and variables
+		/*userInput needs to be initialized outside of the do-while loop
+		 * because the while loop condition depends on the value of userInput.
+		 */
+		int userInput;
+		int endGame = 0;
+		do {
+				//Declaring objects and variables
+				Scanner scan = new Scanner(System.in);				
+				int total = 0;
+				
+				//Die value counters
+				int die1 = 0, die2 = 0, die3 = 0, die4 = 0, die5 = 0, die6 = 0;
+				
+				//Histogram counters
+				String histo1 = "";
+				String histo2 = "";
+				String histo3 = "";
+				String histo4 = "";
+				String histo5 = "";
+				String histo6 = "";
+				
+				//--------------------GAME BEGINS HERE-----------------------------------
+				System.out.println("---------------------------------");
+				System.out.println("How many die do you want to roll?");
+				userInput = scan.nextInt();
+				
+				if (userInput == endGame)
+				{
+					System.out.println("Quitting game! Thanks for playing!");
+					System.exit(1);
+				}
+				
+				//Declaring arrays 
+				Die[] dieArray = new Die[userInput];
+				int[] rollCounter = new int[userInput];
+				
+				//Outputs values of each die before they get rolled.
+				System.out.println("Die objects before the roll (default face value is 1):");
+					
+				//Adds n die objects to array
+				for (int index = 0; index < dieArray.length; index++)
+				{
+					Die die = new Die();
+					dieArray[index] = die;
+					System.out.print(dieArray[index] + ", ");
+				}
+		
+				//Tells the user that the die objects were rolled
+				System.out.println("\n\nDie objects after the roll:");
+				System.out.print("[");
+				
+				/*Rolls each die object in array 10x, adds each roll to the corresponding
+				 * index in rollCounter array (creating the sum for each die), then, it
+				 * prints each value in dieArray after they're rolled 10x and it adds all 
+				 * the face values together into total.  
+				 */
+				for (int i = 0; i < dieArray.length; i++)
+				{
+					for (int j=0; j<10; j++)
+					{
+						dieArray[i].roll();
+						rollCounter[i] += dieArray[i].getFaceValue();
+					}
+					System.out.print(dieArray[i].getFaceValue() + " ");
+					total = total + dieArray[i].getFaceValue();	
+						
+				}
+				System.out.print("]");
+
+				//Prints total of die values from dieArray
+				System.out.println("\n\nTotal: " + total + "\n");
+							
+				//Generates histogram
+				for (int i = 0; i < dieArray.length; i++)
+				{
+					
+					if (dieArray[i].getFaceValue() == 1)
+					{
+						histo1 += "*";	
+						die1++;
+					}
+					else if (dieArray[i].getFaceValue() == 2)
+					{
+						histo2 += "*";	
+						die2++;
+					}
+					else if (dieArray[i].getFaceValue() == 3)
+					{
+						histo3 += "*";	
+						die3++;
+					}
+					else if (dieArray[i].getFaceValue() == 4)
+					{
+						histo4 += "*";		
+						die4++;
+					}
+					else if (dieArray[i].getFaceValue() == 5)
+					{
+						histo5 += "*";	
+						die5++;
+					}
+					else if (dieArray[i].getFaceValue() == 6)
+					{
+						histo6 += "*";	
+						die6++;
+					}
+				}
+				
+				//Displays histogram in nice format
+				System.out.println("\n--------------------DISTRIBUTION OF ROLLS------------------------\n");
+				System.out.println("Die rolls with 1: " + histo1 + " " + die1);
+				System.out.println("Die rolls with 2: " + histo2 + " " + die2);
+				System.out.println("Die rolls with 3: " + histo3 + " " + die3);
+				System.out.println("Die rolls with 4: " + histo4 + " " + die4);
+				System.out.println("Die rolls with 5: " + histo5 + " " + die5);
+				System.out.println("Die rolls with 6: " + histo6 + " " + die6); 
+				
+				//Prints out each element in rollCounter
+				System.out.println("\n--------------------SUM OF EACH DIE AFTER BEING ROLLED TEN TIMES------------------------\n");
+				System.out.print("[");
+				for (int i=0 ; i<rollCounter.length; i++)
+				{
+					System.out.print(rollCounter[i] + " ");
+				}
+				System.out.print("]\n\n");
+	
+			} while (userInput > 0);
+	}
+}
