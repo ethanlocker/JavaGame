@@ -1,0 +1,43 @@
+package source_code;
+
+import java.util.ArrayList;
+
+public class FinalProjectArrayList {
+	
+	public static void main(String[] args)
+	{
+		
+		//FINAL CIT 312 PROGRAMMING PROJECT BY ETHAN LOCKER
+		
+		//Declaring objects and variables
+		ArrayList<Die> dieArrayList = new ArrayList<>();
+		int total = 0;
+		
+		//Adding 10 Die objects to ArrayList
+		for (int i = 0; i < 10; i++)
+		{
+			Die die = new Die();
+			dieArrayList.add(die);
+		}
+		
+		//Prints out Die objects in dieArrayList before they are rolled
+		System.out.println("dieArrayList objects before roll (default face value is 1):\n" + dieArrayList);
+		
+		System.out.println("\ndieArrayList objects after roll: ");
+		System.out.print("[");
+		
+		//Rolls each Die object, prints it and adds the face value to total
+		for (int i = 0; i < dieArrayList.size(); i++)
+		{
+			dieArrayList.get(i).roll();
+			System.out.print(dieArrayList.get(i) + " ");
+			total = total + dieArrayList.get(i).getFaceValue();
+		}
+		System.out.print("]");
+		
+		//Prints total 
+		System.out.println("\n\nTotal of all face values after roll:\n" + total);
+		
+	}
+
+}
